@@ -23,9 +23,10 @@ const defaults = {
 const styles = muiBaseTheme => ({
   card: {
     //maxWidth: 300,
-    margin: "5%",
+    marginLeft: "12%",
     float:"left",
-    width:"-webkit-fill-available",
+    width:"80%",
+    padding:'5% 1% 1% 1%',
     transition: "0.3s",
     boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
     "&:hover": {
@@ -33,7 +34,7 @@ const styles = muiBaseTheme => ({
     }
   },
   media: {
-    paddingTop: "56.25%"
+    paddingTop: "37.25%"
   },
   content: {
     textAlign: "left",
@@ -47,6 +48,11 @@ const styles = muiBaseTheme => ({
   },
   subheading: {
     lineHeight: 1.8
+  },
+  form:{
+    paddingLeft:'7%',
+    paddingRight:'10%',
+    paddingTop:'5%'
   },
   avatar: {
     display: "inline-block",
@@ -78,7 +84,7 @@ class Search extends React.Component {
   //    let value 
       axios({
           method:'GET',
-          url:`http://api.weatherstack.com/current?access_key=${apiKey}&query=${this.state.search}`
+          url:`https://cors-anywhere.herokuapp.com/http://api.weatherstack.com/current?access_key=${apiKey}&query=${this.state.search}`
           
 
       }).then((response)=>{
@@ -105,10 +111,10 @@ class Search extends React.Component {
 
     return (
         <div>
-         <form className="App-header" style={{margin:8,padding:5}} noValidate autoComplete="off" 
+         <form className={classes.form} noValidate autoComplete="off" 
           onSubmit={this.updateSearch}>
         
-            <TextField  style={{margin:5,padding:3}}
+            <TextField  style={{marginLeft:'5%',padding:3}}
             id="outlined-basic" 
             fullWidth 
             label="Search Your City"
@@ -127,10 +133,10 @@ class Search extends React.Component {
             }}
             value={this.state.search}
             
-            />{this.state.istrue?<Button type='submit' variant="contained" >
+            />{this.state.istrue?<Button variant="contained" color="primary" type='submit' style={{marginLeft:'50%'}}>
             Search
           </Button>
-            :''
+            :<></>
             }
             
             </form>
@@ -178,7 +184,7 @@ class Search extends React.Component {
             className={"MuiTypography--subheading"}
             variant={"caption"}
           >
-            <Button>Expand</Button>
+            {/* <Button>Expand</Button> */}
           </Typography>
           {/* 
           {faces.map(face => (

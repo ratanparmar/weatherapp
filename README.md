@@ -69,4 +69,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 To run the project in the browser 
-click https://ratanparmar.github.io/weatherapp/build/index.html
+[Click here]https://ratanparmar.github.io/weatherapp/build/index.html

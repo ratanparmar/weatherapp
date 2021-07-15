@@ -78,29 +78,31 @@ class Search extends React.Component {
     if(this.state.search === ''){
       alert("select a city")
     }else{
-      console.log(this.state.search)
-      console.log(event.target.value)
+      //console.log(this.state.search)
+      //console.log(event.target.value)
       let apiKey = process.env.REACT_APP_APIKEY
   //    let value 
       axios({
           method:'GET',
-          url:`https://cors-anywhere.herokuapp.com/http://api.weatherstack.com/current?access_key=${apiKey}&query=${this.state.search}`
+          // url:`https://cors-anywhere.herokuapp.com/http://api.weatherstack.com/current?access_key=${apiKey}&query=${this.state.search}`
+          url:`https://api.openweathermap.org/data/2.5/forecast?q=${this.state.search}&appid=${apiKey}&units=metric`
           
 
       }).then((response)=>{
+        //console.log(response)
           if(response.data){
-            if(response.data.current.temperature !== undefined){
-                console.log(response.data.current)
-                this.setState({ temp:response.data.current.temperature});
-                this.setState({ description:response.data.current.weather_descriptions});
-                this.setState({ feelslike:response.data.current.feelslike});
-                this.setState({ windSpeed:response.data.current.wind_speed});
+            if(response.data!== undefined){
+                //console.log(response.data.list[0].main)
+                this.setState({ temp:response.data.list[0].main.temp});
+                this.setState({ description:response.data.list[0].weather[0].description});
+                this.setState({ feelslike:response.data.list[0].main.feels_like});
+                this.setState({ windSpeed:response.data.list[0].wind.speed});
                 this.setState({ istrue:false});
             }
           
         }
       }).catch((e)=>{
-        alert("Please select a valid city")
+        console.error("Please select a valid city",e)
       })
     }
   };
@@ -108,7 +110,7 @@ class Search extends React.Component {
   render() {
     //const { search } = this.state;
     const { classes } = this.props;
-
+    //console.log("state======>",this.state)
     return (
         <div>
          <form className={classes.form} noValidate autoComplete="off" 

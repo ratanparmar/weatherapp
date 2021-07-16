@@ -76,7 +76,7 @@ class Search extends React.Component {
 
     event.preventDefault()
     if(this.state.search === ''){
-      alert("select a city")
+      alert("Please type a city")
     }else{
       let apiKey = process.env.REACT_APP_APIKEY
       axios({
@@ -100,7 +100,7 @@ class Search extends React.Component {
         }
       }).catch((e)=>{
         console.error(e)
-        alert("Please select a valid city or check your city name")
+        alert("Please search/type a valid city or check your city name")
         this.setState({search:''})
       })
     }

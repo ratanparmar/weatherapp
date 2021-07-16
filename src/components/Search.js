@@ -23,9 +23,9 @@ const defaults = {
 const styles = muiBaseTheme => ({
   card: {
     //maxWidth: 300,
-    marginLeft: "12%",
+    marginLeft: "7%",
     float:"left",
-    width:"80%",
+    width:"85%",
     padding:'5% 1% 1% 1%',
     transition: "0.3s",
     boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
@@ -50,7 +50,7 @@ const styles = muiBaseTheme => ({
     lineHeight: 1.8
   },
   form:{
-    paddingLeft:'7%',
+    paddingLeft:'2%',
     paddingRight:'10%',
     paddingTop:'5%'
   },
@@ -78,10 +78,7 @@ class Search extends React.Component {
     if(this.state.search === ''){
       alert("select a city")
     }else{
-      //console.log(this.state.search)
-      //console.log(event.target.value)
       let apiKey = process.env.REACT_APP_APIKEY
-  //    let value 
       axios({
           method:'GET',
           // url:`https://cors-anywhere.herokuapp.com/http://api.weatherstack.com/current?access_key=${apiKey}&query=${this.state.search}`
@@ -102,7 +99,9 @@ class Search extends React.Component {
           
         }
       }).catch((e)=>{
-        console.error("Please select a valid city",e)
+        console.error(e)
+        alert("Please select a valid city or check your city name")
+        this.setState({search:''})
       })
     }
   };
@@ -135,7 +134,7 @@ class Search extends React.Component {
             }}
             value={this.state.search}
             
-            />{this.state.istrue?<Button variant="contained" color="primary" type='submit' style={{marginLeft:'50%'}}>
+            />{this.state.istrue?<Button variant="contained" color="primary" type='submit' style={{marginLeft:'45%',position:'relative'}}>
             Search
           </Button>
             :<></>
